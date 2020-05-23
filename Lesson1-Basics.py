@@ -40,3 +40,23 @@ plt.xlabel("Years")
 plt.ylabel("Value")
 plt.title("Plotting Compund Interest")
 plt.show()
+
+# for i, j in zip(total[1:], total[:-1]):
+#     print(i, j)
+
+# Array to store interest earned
+interest = [i-j for i, j in zip(total[1:], total[:-1])]
+# print(interest)
+
+# Plotting how interest changes overtime
+plt.plot(list(range(1, 101)), interest)
+plt.xlabel("Years")
+plt.ylabel("Interest Earned")
+plt.title("Plotting Compund Interest Earned")
+plt.show()
+
+rate = [i/j for i, j in zip(interest, total[:-1])]
+print(rate)
+# The sum of all interest payments plus the original principal equals the last value in the total array
+print(sum(interest)+P)
+print(total[-1])
