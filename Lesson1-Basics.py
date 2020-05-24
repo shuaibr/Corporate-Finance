@@ -21,24 +21,24 @@ print("For loop: {:.2f} \nPV equation: {:.2f}".format(total_pv, total))
 
 # Plotting
 # Present Value function
-def compundInterest(p, r, t):
+def compoundInterest(p, r, t):
     total = p*(1+r)**t
     return total
 
 
-# Testing compunding interest over 100 years
+# Testing compounding interest over 100 years
 timeline = list(range(101))
 # print(timeline)
 
 r = 0.05
 P = 100
-total = [compundInterest(P, r, i) for i in timeline]
+total = [compoundInterest(P, r, i) for i in timeline]
 # print(total)
 
 plt.plot(timeline, total)
 plt.xlabel("Years")
 plt.ylabel("Value")
-plt.title("Plotting Compund Interest")
+plt.title("Plotting Compound Interest")
 plt.show()
 
 # for i, j in zip(total[1:], total[:-1]):
@@ -52,7 +52,7 @@ interest = [i-j for i, j in zip(total[1:], total[:-1])]
 plt.plot(list(range(1, 101)), interest)
 plt.xlabel("Years")
 plt.ylabel("Interest Earned")
-plt.title("Plotting Compund Interest Earned")
+plt.title("Plotting Compound Interest Earned")
 plt.show()
 
 rate = [i/j for i, j in zip(interest, total[:-1])]
@@ -60,3 +60,21 @@ print(rate)
 # The sum of all interest payments plus the original principal equals the last value in the total array
 print(sum(interest)+P)
 print(total[-1])
+
+# Comparing different interest rates
+r1 = 0.02
+r2 = 0.05
+r3 = 0.1
+principal = 100
+A1 = [compoundInterest(P, r1, i) for i in timeline]
+A2 = [compoundInterest(P, r2, i) for i in timeline]
+A3 = [compoundInterest(P, r3, i) for i in timeline]
+
+plt.plot(timeline, A1, label="r=.02")
+plt.plot(timeline, A2, label="r=.05")
+plt.plot(timeline, A3, label="r=.1")
+plt.xlabel("Years")
+plt.ylabel("Return Total")
+plt.title("Plotting Different Compound Interest Rates")
+plt.legend()
+plt.show()
